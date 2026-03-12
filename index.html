@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Founder Analytics Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo"></div>
+                <h2>AgriMarket</h2>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    Dashboard
+                </a>
+                <a href="#" class="nav-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    Suppliers
+                </a>
+                <a href="#" class="nav-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    Buyers
+                </a>
+            </nav>
+            <div class="user-profile">
+                <div class="avatar">F</div>
+                <div class="user-info">
+                    <span class="user-name">Founder</span>
+                    <span class="user-role">Admin</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div>
+                    <h1>Executive Overview</h1>
+                    <p class="subtitle">Daily Performance & Opportunities</p>
+                </div>
+                <div class="header-actions">
+                    <span class="date-badge" id="currentDate"></span>
+                </div>
+            </header>
+
+            <!-- KPI Cards -->
+            <section class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Suppliers Evaluated</span>
+                        <div class="kpi-icon blue"></div>
+                    </div>
+                    <div class="kpi-value" id="kpi-evaluated">--</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Suppliers Approved</span>
+                        <div class="kpi-icon green"></div>
+                    </div>
+                    <div class="kpi-value" id="kpi-approved">--</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Buyer Leads Identified</span>
+                        <div class="kpi-icon purple"></div>
+                    </div>
+                    <div class="kpi-value" id="kpi-leads">--</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Outreach Msgs Generated</span>
+                        <div class="kpi-icon orange"></div>
+                    </div>
+                    <div class="kpi-value" id="kpi-outreach">--</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Avg Supplier Quality</span>
+                        <div class="kpi-icon teal"></div>
+                    </div>
+                    <div class="kpi-value" id="kpi-score">--</div>
+                </div>
+            </section>
+
+            <div class="content-grid">
+                <!-- Left Column: Charts -->
+                <div class="charts-column">
+                    <div class="chart-row">
+                        <!-- Chart 1: Activity Trend -->
+                        <div class="chart-card glass-panel flex-2">
+                            <h3>Daily Activity Trend (Last 7 Days)</h3>
+                            <div class="chart-container">
+                                <canvas id="trendChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-row">
+                        <!-- Chart 2: Buyer Leads by Market -->
+                        <div class="chart-card glass-panel flex-1">
+                            <h3>Buyer Leads by Market</h3>
+                            <div class="chart-container">
+                                <canvas id="marketChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <!-- Chart 3: Product Mix -->
+                        <div class="chart-card glass-panel flex-1">
+                            <h3>Product Category Mix</h3>
+                            <div class="chart-container">
+                                <canvas id="mixChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-row">
+                         <!-- Chart 4: Supplier Quality Scores -->
+                         <div class="chart-card glass-panel flex-1">
+                            <h3>Supplier Quality Scores</h3>
+                            <div class="chart-container">
+                                <canvas id="supplierChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Founder Brief -->
+                <div class="brief-column">
+                    <div class="brief-panel glass-panel">
+                        <div class="brief-header">
+                            <svg class="icon pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                            <h2>Founder Daily Brief</h2>
+                        </div>
+                        
+                        <div class="brief-section">
+                            <h4><span class="dot blue"></span> Daily Operational Summary</h4>
+                            <p id="brief-summary">Loading...</p>
+                        </div>
+
+                        <div class="brief-section">
+                            <h4><span class="dot green"></span> Supplier Insights</h4>
+                            <p id="brief-insights">Loading...</p>
+                        </div>
+
+                        <div class="brief-section">
+                            <h4><span class="dot purple"></span> Buyer Opportunities</h4>
+                            <p id="brief-opportunities">Loading...</p>
+                        </div>
+
+                        <div class="brief-section">
+                            <h4><span class="dot red"></span> Key Risks & Missing Info</h4>
+                            <p id="brief-risks" class="text-risk">Loading...</p>
+                        </div>
+
+                        <div class="brief-section actions-section">
+                            <h4><span class="dot orange"></span> Recommended Actions</h4>
+                            <ul id="brief-actions" class="action-list">
+                                <li>Loading actions...</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
